@@ -7,7 +7,12 @@ on:
     paths:
       - '.github/labels.yml'
   workflow_dispatch:  # 수동으로 워크플로우 실행 가능
-
+  
+# 명시적으로 권한 설정
+permissions:
+  contents: read
+  issues: write
+  
 jobs:
   sync-labels:
     runs-on: ubuntu-latest
