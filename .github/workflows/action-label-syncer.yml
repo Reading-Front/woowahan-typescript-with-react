@@ -1,16 +1,23 @@
-name: Sync labels
+name: Sync Labels
+
 on:
   push:
     branches:
       - main
     paths:
       - '.github/labels.yml'
+  workflow_dispatch:  # 수동으로 워크플로우 실행 가능
 
 jobs:
   sync-labels:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: micnncim/action-label-syncer@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync labels
+        uses: micnncim/action-label-syncer@v1
         with:
+          repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           manifest: .github/labels.yml
