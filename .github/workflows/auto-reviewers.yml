@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, synchronize, ready_for_review]
 
+# 권한을 명시적으로 추가
+permissions:
+  pull-requests: write
+
 jobs:
   add-reviewers:
     runs-on: ubuntu-latest
